@@ -1,0 +1,59 @@
+<enunciate xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="http://enunciate.codehaus.org/schemas/enunciate-1.34.xsd">
+    <disable-rule id="ruby.warnings"/>
+    <disable-rule id="c.warnings"/>
+
+    <facets>
+        <exclude name="http://familysearch.org/indexing/facets#excludeAPIDocumentation"/>
+    </facets>
+
+    <!-- exclude the "digital archive" classes -->
+    <api-classes>
+        <exclude pattern="org.familysearch.digitalarchive.**" />
+    </api-classes>
+
+   <!--  <api-import pattern="org.familysearch.idx.api.rest.support.*"/>
+
+    Include REST Endpoints and model classes for client jar creation
+    <api-import pattern="org.familysearch.idx.message.rest.api.endpoints.**"/>
+    NOTE : This import is required for the marshalling support classes
+    <api-import pattern="org.familysearch.idx.message.rest.support.**"/>
+    <api-import pattern="org.familysearch.idx.message.rest.endpoints.**"/>
+    <api-import pattern="org.familysearch.idx.message.rest.api.model.**"/>
+    <api-import pattern="org.familysearch.idx.message.service.api.model.**"/> -->
+    
+    <api-import pattern="org.familysearch.gal.application.rest.api.support.**"/>
+	<api-import pattern="org.familysearch.gal.application.rest.api.endpoints.**"/>
+	<api-import pattern="org.familysearch.gal.application.rest.api.model.**"/>
+    
+    <webapp webXMLTransform="./web.xml.xslt">
+        <globalServletFilter name="httpRequestContextFilter" classname="org.familysearch.engage.foundation.services.HttpRequestContextFilter"/>
+    </webapp>
+
+    <modules>
+        <amf disabled="true"/>
+        <csharp disabled="true"/>
+        <obj-c disabled="true"/>
+
+        <jersey>
+            <init-param name="com.sun.jersey.spi.container.ContainerRequestFilters" value="com.sun.jersey.api.container.filter.GZIPContentEncodingFilter" />
+            <init-param name="com.sun.jersey.spi.container.ContainerResponseFilters" value="com.sun.jersey.api.container.filter.GZIPContentEncodingFilter" />
+            <init-param name="com.sun.jersey.config.feature.DisableXmlSecurity" value="true"/>
+            <init-param name="com.sun.jersey.config.property.packages	" value="com.sun.jersey.atom.abdera.impl.provider.entity"/>
+        </jersey>
+
+        <!-- identify the "Spring" resources -->
+        <spring-app>
+            <springImport uri="classpath:/application-beans.xml"/>
+            <springImport uri="classpath:/database-message-beans.xml"/>
+            <springImport uri="classpath:/security-beans.xml"/>
+        </spring-app>
+	</modules>
+
+    <!-- specify a transform file to workaround the issue of filters being applied more than once to a request see -->
+    <webapp webXMLTransform="./web.xml.xslt">
+         <globalServletFilter   name="org.familysearch.engage.foundation.security.AuthenticatedMetricContextServletFilter"
+                                classname="org.familysearch.ws.rt.servlet.ClassnameDelegatingFilterProxy"/>
+    </webapp>
+
+</enunciate>
