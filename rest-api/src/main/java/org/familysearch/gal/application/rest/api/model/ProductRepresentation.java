@@ -1,10 +1,7 @@
 package org.familysearch.gal.application.rest.api.model;
 
-import org.codehaus.enunciate.json.JsonRootType;
-
 import javax.xml.bind.annotation.XmlRootElement;
 
-@JsonRootType
 @XmlRootElement
 public class ProductRepresentation {
 
