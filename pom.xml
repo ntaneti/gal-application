@@ -23,7 +23,7 @@
 		<!-- Seperate it to super-pom -->
 		<idx-api-super-pom.version>${project.version}</idx-api-super-pom.version>
 		<jersey.version>1.18</jersey.version>
-		<spring.version>3.2.4.RELEASE</spring.version>
+		<spring.version>4.0.6.RELEASE</spring.version>
 		<camel.version>2.13.0</camel.version>
 		<jackson.version>1.9.7</jackson.version>
 		<activemq.version>5.7.0</activemq.version>
@@ -90,6 +90,8 @@
 		<cargo.context>${project.artifactId}</cargo.context>
 		<cargo.debug.startup>n</cargo.debug.startup>
 		<spring.profiles.active>local</spring.profiles.active>
+		
+		<querydsl.version>3.2.4</querydsl.version>
 	</properties>
 
 	<modules>
@@ -1134,4 +1136,29 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+	
+	<dependencies>
+	  <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-jpa</artifactId>
+            <version>1.6.4.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-jdbc-core</artifactId>
+            <version>1.0.0.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.mysema.querydsl</groupId>
+            <artifactId>querydsl-jpa</artifactId>
+            <version>${querydsl.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.mysema.querydsl</groupId>
+            <artifactId>querydsl-apt</artifactId>
+            <version>${querydsl.version}</version>
+        </dependency>
+	</dependencies>
+	
 </project>

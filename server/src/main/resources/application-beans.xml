@@ -16,8 +16,16 @@
     <aop:aspectj-autoproxy/>
     <context:annotation-config />
     
-  	<context:component-scan base-package="org.familysearch.gal.application.rest.api.endpoints"/>
+  	
+  	
+  	 <!-- Classes for beans -->
+	<context:component-scan base-package="org.familysearch.gal.application.rest.api.endpoints"/>
+    <context:component-scan base-package="org.familysearch.gal.application.rest.api.support"/>
+    <context:component-scan base-package="org.familysearch.gal.application.service.impl"/>
+
     <bean id="objectMapper" class="org.codehaus.jackson.map.ObjectMapper" />
+    
+    <bean id="linkBuilderFactory" class="org.familysearch.engage.foundation.util.impl.FSLinkBuilderFactory" />
     
     <beans profile="local">
         <context:property-placeholder location="classpath:/config/local/config.properties"/>

@@ -30,7 +30,7 @@ import org.hibernate.validator.constraints.Length;
  * 
  */
 @Entity
-@Table(name = "products", uniqueConstraints = @UniqueConstraint(columnNames = { "uuid" }))
+@Table(name = "products", uniqueConstraints = @UniqueConstraint(columnNames = { "uuid", "product_id" }))
 public class ProductDBO extends AbstractEntity<ProductDBO> {
 
     private static final long serialVersionUID = 873245192978870789L;
