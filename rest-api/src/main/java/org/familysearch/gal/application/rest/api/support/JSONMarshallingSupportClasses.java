@@ -11,12 +11,6 @@ import org.familysearch.gal.application.rest.api.model.ProductRepresentation;
 import org.springframework.stereotype.Component;
 
 
-/**
- * Provides BaseJSONSupport classes for the IDX V2 API. Each V2 type needs a
- * class here with @Provider and @Produces annotations to register both a
- * MessageBodyReader and MessageBodyWriter with Jersey.
- * 
- */
 @Component
 public class JSONMarshallingSupportClasses {
 

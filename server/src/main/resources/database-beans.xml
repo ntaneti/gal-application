@@ -3,12 +3,14 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:aop="http://www.springframework.org/schema/aop"
        xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:jpa="http://www.springframework.org/schema/data/jpa"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
                            http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
                            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
-                           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+                           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+                           http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
     <!--
         API schema configuration
@@ -40,7 +42,7 @@
         p:databasePlatform="org.hibernate.dialect.MySQL5Dialect" />
 
     <!-- JPA Dialect -->
-    <bean id="jpaDialect" class="org.familysearch.idx.message.dal.base.ValidatingHibernateJPADialect" />
+    <bean id="jpaDialect" class="org.familysearch.gal.application.dal.api.base.ValidatingHibernateJPADialect" />
 
     <!-- EntityManager factory -->
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" depends-on="flyway"
@@ -63,10 +65,23 @@
           p:maxActive="100"
           p:validationQuery="select 1"
           p:testOnBorrow="true"/>
-
+          
+	<jpa:repositories base-package="org.familysearch.gal.application.dal.api.**"
+                      entity-manager-factory-ref="entityManagerFactory"
+                      transaction-manager-ref="transactionManager" />
+                      
     <beans profile="cloud-blueprint">
 
         <bean id="sasObjectRequester" class="org.familysearch.sas.client.ObjectRequester"/>
-        
+
+        <bean id="dataSourceMessage" class="org.familysearch.engage.foundation.dbcp.SasEnabledBasicDataSource"
+              p:driverClassName="com.mysql.jdbc.Driver"
+              p:objectRequester-ref="sasObjectRequester"
+              p:sasObjectName="${MESSAGE_RDS_SAS_OBJECT_NAME}"
+              p:url="${gallery.db.url}"
+              p:initialSize="40"
+              p:maxActive="100"
+              p:validationQuery="select 1"
+              p:testOnBorrow="true"/>
     </beans>
 </beans>
