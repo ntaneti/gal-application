@@ -94,7 +94,6 @@ public class DatabaseConfig {
     @Bean org.apache.commons.dbcp.BasicDataSource dataSource() {
         final BasicDataSource basicDataSource = new BasicDataSource();
         basicDataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        //TODO correct the url
         basicDataSource.setUrl(env.getProperty("gallery.db.url"));
         basicDataSource.setUsername(env.getProperty("gallery.db.username"));
         basicDataSource.setPassword(env.getProperty("gallery.db.password"));
