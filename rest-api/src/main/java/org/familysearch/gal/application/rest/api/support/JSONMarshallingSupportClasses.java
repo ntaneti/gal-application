@@ -8,14 +8,16 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.ext.Provider;
 
 import org.familysearch.gal.application.rest.api.model.ProductRepresentation;
+import org.familysearch.gal.shared.common.GALV1MediaTypes;
+import org.familysearch.gal.shared.rest.support.BaseJSONSupport;
 import org.springframework.stereotype.Component;
 
+import static org.familysearch.gal.shared.common.GALV1MediaTypes.APPLICATION_GAL_V1_JSON_TYPE;
 
-@Component
 public class JSONMarshallingSupportClasses {
 
     private static List<MediaType> mediaTypes = Arrays
-        .asList(new MediaType[] { GalMediaTypes.APPLICATION_GAL_V1_JSON_TYPE});
+        .asList(new MediaType[] { APPLICATION_GAL_V1_JSON_TYPE});
 
     private static abstract class GALV1_JSONSupport<T> extends BaseJSONSupport<T> {
         @Override
@@ -25,7 +27,7 @@ public class JSONMarshallingSupportClasses {
     }
 
     @Provider
-    @Produces({ GalMediaTypes.APPLICATION_GAL_V1_JSON })
+    @Produces({ GALV1MediaTypes.APPLICATION_GAL_V1_JSON })
     public static class ProductRepresentationJSONSupport extends GALV1_JSONSupport<ProductRepresentation> {
         @Override
         protected Class<ProductRepresentation> getTypeToken() {

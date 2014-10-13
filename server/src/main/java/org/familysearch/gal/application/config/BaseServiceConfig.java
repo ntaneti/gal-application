@@ -1,5 +1,6 @@
 package org.familysearch.gal.application.config;
 
+import org.codehaus.jackson.jaxrs.JacksonJsonProvider;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.familysearch.engage.foundation.services.ServiceFactory;
 import org.familysearch.engage.foundation.services.impl.DefaultServiceFactory;

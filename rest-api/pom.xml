@@ -60,5 +60,9 @@
             <groupId>org.codehaus.enunciate</groupId>
             <artifactId>enunciate-core-annotations</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.familysearch.gal-super-api</groupId>
+            <artifactId>gal-shared</artifactId>
+        </dependency>
     </dependencies>
 </project>
