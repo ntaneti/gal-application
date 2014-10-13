@@ -1,12 +1,12 @@
 package org.familysearch.gal.application.dal.api.repositories;
 
-import java.util.UUID;
-
 import org.familysearch.gal.application.dal.api.model.ProductDBO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
+
+import java.util.UUID;
 
 /**
  * Repository to for {@link org.familysearch.gal.application.dal.api.model.ProductDBO}
@@ -14,8 +14,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ProductRepository extends JpaRepository<ProductDBO, Long>, JpaSpecificationExecutor,
                 PagingAndSortingRepository<ProductDBO, Long> {
-	
-	ProductDBO findByUuid(UUID uuid);
+
+    ProductDBO findByUuid(UUID uuid);
 
     ProductDBO findByName(String name);
 

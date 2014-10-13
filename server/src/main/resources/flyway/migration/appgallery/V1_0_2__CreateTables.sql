@@ -11,8 +11,7 @@ create table products (
  uuid binary(16) not null unique,
  name varchar(255) not null,
  description varchar(255) not null,
- primary key (product_id),
- unique (name)
+ primary key (product_id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
 create table if not exists partner(
