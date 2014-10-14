@@ -14,7 +14,13 @@
 
 	<packaging>pom</packaging>
     <properties>
-        <spring.profiles.active>local,postgres</spring.profiles.active>
+        <spring.profiles.active>local,mysql</spring.profiles.active>
+        <!--
+        NOTE:
+        To activate POSTGRES database integration, Disable above mysql property and enable below spring profile
+        Also, to change the property `gallery.db.url` to appropriate location.
+         -->
+        <!--<spring.profiles.active>local,postgres</spring.profiles.active>-->
     </properties>
 
 	<modules>

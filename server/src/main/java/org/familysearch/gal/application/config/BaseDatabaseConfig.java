@@ -15,15 +15,14 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 
-@EnableJpaRepositories( basePackages = "org.familysearch.gal.application.dal.api.**",
-        entityManagerFactoryRef = "entityManagerFactory",
-        transactionManagerRef = "transactionManager")
+@EnableJpaRepositories(basePackages = "org.familysearch.gal.application.dal.api.**",
+                entityManagerFactoryRef = "entityManagerFactory",
+                transactionManagerRef = "transactionManager")
 @EnableTransactionManagement
 public abstract class BaseDatabaseConfig {
     /**
      * Translates Hibernate exceptions to Spring exceptions for @Repository (DAO) classes
      */
-
     @Autowired
     Environment env;
 
@@ -32,34 +31,15 @@ public abstract class BaseDatabaseConfig {
         return new org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor();
     }
 
-    /**Flyway Configuration*/
-
-    @Bean
-    Flyway flyway() {
-        final Flyway flyway = new Flyway();
-        flyway.setDataSource(dataSource());
-        flyway.setLocations("classpath:flyway/migration/appgallery/postgres");
-        flyway.migrate();
-        return flyway;
-    }
+    /** Flyway Configuration */
+    public abstract Flyway flyway();
 
     public abstract DataSource dataSource();
 
-    /**JPA configuration */
-    @Bean
-    org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter jpaVendorAdapter()
-    {
-        final HibernateJpaVendorAdapter hibernateJpaVendorAdapter = new HibernateJpaVendorAdapter();
+    /** JPA configuration */
+    public abstract HibernateJpaVendorAdapter jpaVendorAdapter();
 
-        hibernateJpaVendorAdapter.setDatabasePlatform("org.hibernate.dialect.MySQL5Dialect");
-//        hibernateJpaVendorAdapter.setDatabase(mysql());
-
-        hibernateJpaVendorAdapter.setShowSql(false);
-        hibernateJpaVendorAdapter.setGenerateDdl(false);
-        return hibernateJpaVendorAdapter;
-    }
-
-    /**EntityManager factory */
+    /** EntityManager factory */
     @Bean
     LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         final LocalContainerEntityManagerFactoryBean localContainerEntityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
@@ -70,13 +50,14 @@ public abstract class BaseDatabaseConfig {
         return localContainerEntityManagerFactoryBean;
     }
 
-    /**JPA Dialect */
-    @Bean ValidatingHibernateJPADialect jpaDialect() {
+    /** JPA Dialect */
+    @Bean
+    ValidatingHibernateJPADialect jpaDialect() {
         ValidatingHibernateJPADialect validatingHibernateJPADialect = new ValidatingHibernateJPADialect();
         return validatingHibernateJPADialect;
     }
 
-    /**TransactionManager */
+    /** TransactionManager */
     @Bean
     PlatformTransactionManager transactionManager() {
         final JpaTransactionManager jpaTransactionManager = new JpaTransactionManager();
