@@ -41,7 +41,6 @@
 		<!-- identify the "Spring" resources -->
 		<spring-app>
 			<springImport uri="classpath:/application-beans.xml" />
-			<!--<springImport uri="classpath:/database-beans.xml"/>-->
 		</spring-app>
 	</modules>
 
