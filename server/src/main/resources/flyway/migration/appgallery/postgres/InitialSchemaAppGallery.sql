@@ -5,7 +5,10 @@ DROP SCHEMA IF EXISTS public CASCADE;
 
 DROP DATABASE IF EXISTS fsg_app_gallery;
 
-CREATE DATABASE fsg_app_gallery;
+DROP USER IF EXISTS "appgallery";
+
+CREATE USER "appgallery" PASSWORD 'appgallery';
+CREATE DATABASE fsg_app_gallery OWNER "appgallery";
 CREATE SCHEMA public;
 
 GRANT ALL PRIVILEGES ON DATABASE fsg_app_gallery
