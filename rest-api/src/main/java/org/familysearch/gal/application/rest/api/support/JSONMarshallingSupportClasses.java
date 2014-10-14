@@ -7,15 +7,19 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.ext.Provider;
 
+import org.familysearch.gal.application.rest.api.model.ApplicationLocaleRepresentation;
+import org.familysearch.gal.application.rest.api.model.ApplicationRepresentation;
+import org.familysearch.gal.application.rest.api.model.PartnerRepresentation;
 import org.familysearch.gal.application.rest.api.model.ProductRepresentation;
-import org.springframework.stereotype.Component;
+import org.familysearch.gal.shared.common.GALMediaTypes;
+import org.familysearch.gal.shared.rest.support.BaseJSONSupport;
 
+import static org.familysearch.gal.shared.common.GALMediaTypes. APPLICATION_GAL_JSON_TYPE;;
 
-@Component
 public class JSONMarshallingSupportClasses {
 
     private static List<MediaType> mediaTypes = Arrays
-        .asList(new MediaType[] { GalMediaTypes.APPLICATION_GAL_V1_JSON_TYPE});
+        .asList(new MediaType[] { APPLICATION_GAL_JSON_TYPE});
 
     private static abstract class GALV1_JSONSupport<T> extends BaseJSONSupport<T> {
         @Override
@@ -25,7 +29,7 @@ public class JSONMarshallingSupportClasses {
     }
 
     @Provider
-    @Produces({ GalMediaTypes.APPLICATION_GAL_V1_JSON })
+    @Produces({ GALMediaTypes.APPLICATION_GAL_JSON })
     public static class ProductRepresentationJSONSupport extends GALV1_JSONSupport<ProductRepresentation> {
         @Override
         protected Class<ProductRepresentation> getTypeToken() {
@@ -33,4 +37,30 @@ public class JSONMarshallingSupportClasses {
         }
     }
 
+    @Provider
+    @Produces({ GALMediaTypes.APPLICATION_GAL_JSON })
+    public static class ApplicationRepresentationJSONSupport extends GALV1_JSONSupport<ApplicationRepresentation> {
+        @Override
+        protected Class<ApplicationRepresentation> getTypeToken() {
+            return ApplicationRepresentation.class;
+        }
+    }
+    
+    @Provider
+    @Produces({ GALMediaTypes.APPLICATION_GAL_JSON })
+    public static class ApplicationLocaleRepresentationJSONSupport extends GALV1_JSONSupport<ApplicationLocaleRepresentation> {
+        @Override
+        protected Class<ApplicationLocaleRepresentation> getTypeToken() {
+            return ApplicationLocaleRepresentation.class;
+        }
+    }
+    
+    @Provider
+    @Produces({ GALMediaTypes.APPLICATION_GAL_JSON })
+    public static class PartnerRepresentationJSONSupport extends GALV1_JSONSupport<PartnerRepresentation> {
+        @Override
+        protected Class<PartnerRepresentation> getTypeToken() {
+            return PartnerRepresentation.class;
+        }
+    }
 }
