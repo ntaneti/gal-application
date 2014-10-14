@@ -47,7 +47,12 @@
 							<mediaTypes>
 								<mediaType>
 									<id>GalAPIV1</id>
-									<type>application/vnd.fs-gal-v1+json</type>
+									<type>application/vnd.fs-gal+json</type>
+								</mediaType>
+                                <mediaType>
+									<id>GalAPIV1+xml</id>
+									<type>application/vnd.fs-gal+xml</type>
+                                    <namespace>http://api.gal.familysearch.org/model</namespace>
 								</mediaType>
 							</mediaTypes>
 						</configuration>

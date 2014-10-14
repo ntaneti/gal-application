@@ -2,8 +2,10 @@ package org.familysearch.gal.application.rest.api.model;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.familysearch.gal.shared.model.AbstractRepresentation;
+
 @XmlRootElement
-public class ProductRepresentation {
+public class ProductRepresentation extends AbstractRepresentation {
 
     private String name;
     private String description;

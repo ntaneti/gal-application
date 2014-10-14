@@ -6,6 +6,7 @@ import org.familysearch.gal.application.rest.api.endpoints.ProductEndpoints;
 import org.familysearch.gal.application.rest.api.model.ProductRepresentation;
 import org.familysearch.gal.application.service.api.ProductResourceService;
 import org.familysearch.gal.application.service.api.model.Product;
+import org.familysearch.gal.shared.model.Link;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -37,6 +38,9 @@ public class ProductEndpointsImpl implements ProductEndpoints {
         if(product!=null) {
             ProductRepresentation productRepresentation = new ProductRepresentation();
             BeanUtils.copyProperties(product, productRepresentation);
+            Link link = new Link();
+            link.setHref("sample link");
+            productRepresentation.addLink(link);
             return Response.ok(productRepresentation).build();
         }
         else {
