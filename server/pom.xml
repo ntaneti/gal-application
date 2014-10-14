@@ -25,7 +25,7 @@
 				<flyway.user>appgallery</flyway.user>
 				<flyway.password>appgallery</flyway.password>
 				<flyway.schema>fsg_app_gallery</flyway.schema>
-				<flyway.location>classpath:flyway/migration/appgallery</flyway.location>
+				<flyway.location>classpath:flyway/migration/appgallery/mysql</flyway.location>
 			</properties>
 		</profile>
 
