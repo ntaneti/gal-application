@@ -12,7 +12,7 @@
 	<api-classes>
 		<exclude pattern="org.familysearch.digitalarchive.**" />
 	</api-classes>
-
+	
     <api-import pattern="org.familysearch.gal.application.rest.api.support.**" />
 	<api-import pattern="org.familysearch.gal.application.rest.api.endpoints.**" />
 	<api-import pattern="org.familysearch.gal.application.rest.api.model.**" />
@@ -41,7 +41,6 @@
 		<!-- identify the "Spring" resources -->
 		<spring-app>
 			<springImport uri="classpath:/application-beans.xml" />
-			<!--<springImport uri="classpath:/database-beans.xml"/>-->
 		</spring-app>
 	</modules>
 

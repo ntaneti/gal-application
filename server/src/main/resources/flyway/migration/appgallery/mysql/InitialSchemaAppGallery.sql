@@ -14,6 +14,3 @@ grant all privileges on fsg_app_gallery.*
    to 'appgallery'@'%'
    identified by 'appgallery'
    with grant option;
-   
-   
-   

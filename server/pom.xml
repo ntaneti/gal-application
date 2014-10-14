@@ -28,7 +28,18 @@
 				<flyway.location>classpath:flyway/migration/appgallery</flyway.location>
 			</properties>
 		</profile>
-	</profiles>
+
+        <profile>
+            <id>flyway-appgallery-localhost-postgres</id>
+            <properties>
+                <flyway.url>jdbc:postgresql://localhost:5432/fsg_app_gallery?useUnicode=true</flyway.url>
+                <flyway.user>appgallery</flyway.user>
+                <flyway.password>appgallery</flyway.password>
+                <flyway.schema>public</flyway.schema>
+                <flyway.location>classpath:flyway/migration/appgallery/postgres</flyway.location>
+            </properties>
+        </profile>
+    </profiles>
 
 	<build>
 		<finalName>${project.artifactId}</finalName>
@@ -44,18 +55,19 @@
 							<goal>assemble</goal>
 						</goals>
 						<configuration>
-							<mediaTypes>
-								<mediaType>
-									<id>GalAPIV1</id>
-									<type>application/vnd.fs-gal+json</type>
-								</mediaType>
+                            <mediaTypes>
                                 <mediaType>
-									<id>GalAPIV1+xml</id>
-									<type>application/vnd.fs-gal+xml</type>
+                                    <id>Atom</id>
+                                    <type>application/atom+xml</type>
+                                    <namespace>http://www.w3.org/2005/Atom</namespace>
+                                </mediaType>
+                                <mediaType>
+                                    <id>GalAPI</id>
+                                    <type>application/vnd.fs-gal+xml</type>
                                     <namespace>http://api.gal.familysearch.org/model</namespace>
-								</mediaType>
-							</mediaTypes>
-						</configuration>
+                                </mediaType>
+                            </mediaTypes>
+                        </configuration>
 					</execution>
 
 					<execution>
@@ -222,6 +234,9 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
-
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+		</dependency>
 	</dependencies>
 </project>
