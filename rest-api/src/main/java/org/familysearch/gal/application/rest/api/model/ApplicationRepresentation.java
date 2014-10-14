@@ -6,19 +6,22 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.xml.bind.annotation.XmlAccessorOrder;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.XmlAccessOrder;
 
 import org.codehaus.jackson.annotate.JsonProperty;
+import org.familysearch.gal.shared.model.AbstractRepresentation;
+import org.familysearch.gal.shared.model.Link;
 
 @XmlRootElement(name = "application")
 @XmlType(name = "application")
 @XmlAccessorOrder(XmlAccessOrder.ALPHABETICAL)
-public class ApplicationRepresentation {
+public class ApplicationRepresentation extends AbstractRepresentation{
 
 	private UUID uuid;
-	private UUID authorId;
+	private Link partner;
 	private String appStatus;
 	private String appName;
 	private String appVersion;
@@ -41,14 +44,6 @@ public class ApplicationRepresentation {
 
 	public void setUuid(UUID uuid) {
 		this.uuid = uuid;
-	}
-
-	public UUID getAuthorId() {
-		return authorId;
-	}
-
-	public void setAuthorId(UUID authorId) {
-		this.authorId = authorId;
 	}
 
 	public String getAppStatus() {
@@ -140,5 +135,14 @@ public class ApplicationRepresentation {
 			List<ApplicationLocaleRepresentation> locales) {
 		this.locales = locales;
 	}
+
+	@XmlElement(name = "facet")
+    public Link getPartner() {
+        return partner;
+    }
+
+    public void setPartner(Link partner) {
+        this.partner = partner;
+    }
 
 }

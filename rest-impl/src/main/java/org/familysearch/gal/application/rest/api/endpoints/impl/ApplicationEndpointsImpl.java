@@ -15,6 +15,7 @@ import org.familysearch.gal.application.rest.api.endpoints.ApplicationEndpoints;
 import org.familysearch.gal.application.rest.api.model.ApplicationRepresentation;
 import org.familysearch.gal.application.service.api.ApplicationResourceService;
 import org.familysearch.gal.application.service.api.model.Application;
+import org.familysearch.gal.shared.model.Link;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -58,7 +59,7 @@ public class ApplicationEndpointsImpl implements ApplicationEndpoints {
 			BeanUtils.copyProperties(application, applicationRepresentation);
 			applicationRepresentation.setCreationTime(application.getCreationTime().getTime());
 			applicationRepresentation.setLastUpdateTime(application.getCreationTime().getTime());
-			applicationRepresentation.setAuthorId(UUID.randomUUID());
+			applicationRepresentation.setPartner(new Link());
 			return Response.ok(applicationRepresentation).build();
 		} else {
 			return Response.noContent().build();

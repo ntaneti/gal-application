@@ -44,13 +44,19 @@
 							<goal>assemble</goal>
 						</goals>
 						<configuration>
-							<mediaTypes>
-								<mediaType>
-									<id>GalAPIV1</id>
-									<type>application/vnd.fs-gal-v1+json</type>
-								</mediaType>
-							</mediaTypes>
-						</configuration>
+                            <mediaTypes>
+                                <mediaType>
+                                    <id>Atom</id>
+                                    <type>application/atom+xml</type>
+                                    <namespace>http://www.w3.org/2005/Atom</namespace>
+                                </mediaType>
+                                <mediaType>
+                                    <id>GalAPI</id>
+                                    <type>application/vnd.fs-gal+xml</type>
+                                    <namespace>http://api.gal.familysearch.org/model</namespace>
+                                </mediaType>
+                            </mediaTypes>
+                        </configuration>
 					</execution>
 
 					<execution>
